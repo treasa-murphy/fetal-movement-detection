@@ -53,10 +53,14 @@ When you're ready to make this README your own, just edit this file and use the 
 Every project is different, so consider which of these sections apply to yours. The sections used in the template are suggestions for most open source projects. Also keep in mind that while a README can be too long and detailed, too long is better than too short. If you think your README is too long, consider utilizing another form of documentation rather than cutting out information.
 
 ## Name
-Choose a self-explaining name for your project.
+Saving Babies Using Machine Learning and Time Series Analysis
 
 ## Description
-Let people know what your project can do specifically. Provide context and add a link to any reference visitors might be unfamiliar with. A list of Features or a Background subsection can also be added here. If there are alternatives to your project, this is a good place to list differentiating factors.
+
+Dataset for this project:
+Dataset recorded by clinicians at a maternity hospital in Ireland. The dataset is protected. The student understands and respects confidentiality and has signed an agreement with UCD Nova to keep the dataset confidential. 
+
+The project will start from a dataset collected by clinicians in Ireland which monitors pregnant women by using a wearable fetal movement monitoring system (e.g. wearable sensors). The aim is to analyse this dataset to understand patterns of fetal movement that may be predictive of fetal health. In particular, this project will focus on Fetal Movement Detection algorithms which involves data analysis and machine learning algorithms to automatically detect fetal movement in a sensor-recorded time series. For a subset of the time series, there are labels provided by the mother who clicked a button when they sensed movement. The presence of these labels allows validation of supervised learning algorithms.
 
 ## Badges
 On some READMEs, you may see small images that convey metadata, such as whether or not all the tests are passing for the project. You can use Shields to add some to your README. Many services also have instructions for adding a badge.
