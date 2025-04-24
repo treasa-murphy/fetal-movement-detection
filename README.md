@@ -1,70 +1,108 @@
-# fetal-movement-detection
+**Saving Babies With Machine Learning and Time Series Analysis**
 
+**Overview**
 
-## Add your files
+This project investigates the use of machine learning and time series classification techniques to detect fetal movements based on wearable sensor data. The data was collected by a maternity hospital in Ireland and includes signals from piezoelectric sensors and maternal button presses used to indicate sensed fetal movements. Accurately detecting fetal movement is essential for prenatal care, offering critical insights into the health and wellbeing of the fetus.
 
-- [ ] [Create](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#create-a-file) or [upload](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#upload-a-file) files
-- [ ] [Add files using the command line](https://docs.gitlab.com/ee/gitlab-basics/add-file.html#add-a-file-using-the-command-line) or push an existing Git repository with the following command:
+**Problem Statement**
 
-```
-cd existing_repo
-git remote add origin https://gitlab.com/treasa.murphy1/fetal-movement-detection.git
-git branch -M main
-git push -uf origin main
-```
+Time series data reflecting fetal movements presents an opportunity to better understand fetal health. With the help of machine learning, this project aims to:
 
-## Name
-Saving Babies Using Machine Learning and Time Series Analysis
+Preprocess and structure a sensor dataset for machine learning.
 
-## Description
+Explore different strategies for generating labelled samples.
 
-Dataset for this project:
-Dataset recorded by clinicians at a maternity hospital in Ireland. The dataset is protected. The student understands and respects confidentiality and has signed an agreement with UCD Nova to keep the dataset confidential. 
+Evaluate various time series classification models.
 
-The project will start from a dataset collected by clinicians in Ireland which monitors pregnant women by using a wearable fetal movement monitoring system (e.g. wearable sensors). The aim is to analyse this dataset to understand patterns of fetal movement that may be predictive of fetal health. In particular, this project will focus on Fetal Movement Detection algorithms which involves data analysis and machine learning algorithms to automatically detect fetal movement in a sensor-recorded time series. For a subset of the time series, there are labels provided by the mother who clicked a button when they sensed movement. The presence of these labels allows validation of supervised learning algorithms.
+Improve the precision of fetal movement detection to support better clinical outcomes.
 
-## Badges
-On some READMEs, you may see small images that convey metadata, such as whether or not all the tests are passing for the project. You can use Shields to add some to your README. Many services also have instructions for adding a badge.
+**Dataset**
 
-## Visuals
-Depending on what you are making, it can be a good idea to include screenshots or even a video (you'll frequently see GIFs rather than actual videos). Tools like ttygif can help, but check out Asciinema for a more sophisticated method.
+The dataset includes:
 
-## Installation
-Within a particular ecosystem, there may be a common way of installing things, such as using Yarn, NuGet, or Homebrew. However, consider the possibility that whoever is reading your README is a novice and would like more guidance. Listing specific steps helps remove ambiguity and gets people to using your project as quickly as possible. If it only runs in a specific context like a particular programming language version or operating system or has dependencies that have to be installed manually, also add a Requirements subsection.
+Wearable sensor recordings (piezoelectric signals).
 
-## Usage
-Use examples liberally, and show the expected output if you can. It's helpful to have inline the smallest example of usage that you can demonstrate, while providing links to more sophisticated examples if they are too long to reasonably include in the README.
+Maternal button-press labels indicating perceived fetal movements.
 
-## Support
-Tell people where they can go to for help. It can be any combination of an issue tracker, a chat room, an email address, etc.
+Due to privacy restrictions, the dataset is not included in this repository. If authorised, you may access the dataset via secure institutional channels.
 
-## Roadmap
-If you have ideas for releases in the future, it is a good idea to list them in the README.
+**Project Objectives**
 
-## Contributing
-State if you are open to contributions and what your requirements are for accepting them.
+Dataset exploration: Understand the structure of the data and perform necessary preprocessing.
 
-For people who want to make changes to your project, it's helpful to have some documentation on how to get started. Perhaps there is a script that they should run or some environment variables that they need to set. Make these steps explicit. These instructions could also be useful to your future self.
+Exploratory data analysis: Visualise patterns, frequencies, and durations of fetal movements.
 
-You can also document commands to lint the code or run tests. These steps help to ensure high code quality and reduce the likelihood that the changes inadvertently break something. Having instructions for running tests is especially helpful if it requires external setup, such as starting a Selenium server for testing in a browser.
+Model development: Implement machine learning models to detect movements using labelled time series segments.
 
-## Authors and acknowledgment
-Show your appreciation to those who have contributed to the project.
+Evaluation: Validate models against ground truth labels and compare classifiers.
 
-## Data Access
+Interdisciplinary insight: Collaborate with experts from Computer Science and Biomedical Engineering for clinical relevance.
 
-This repository does not include the raw data due to privacy restrictions.
+**Sample Generation Strategies**
 
-To use this code:
-1. Mount your Google Drive in Google Colab.
-2. Set the `DATA_PATH` in `utils.py` to the appropriate location.
-3. Use `load_metadata()` and `load_sensor_data()` from `utils.py`.
+Implemented in sample_generation.py:
 
-> Contact the project supervisor for access to FeMo1 data if authorised.
+Strategy 1: Pre/post click sampling using fixed non-overlapping windows.
 
+Strategy 2: Non-overlapping fixed-length windows labelled based on the presence of clicks.
 
-## License
-For open source projects, say how it is licensed.
+Strategy 3: Augmented positive samples by applying multiple shifts to windowed segments surrounding a click.
 
-## Project status
-If you have run out of energy or time for your project, put a note at the top of the README saying that development has slowed down or stopped completely. Someone may choose to fork your project or volunteer to step in as a maintainer or owner, allowing your project to keep going. You can also make an explicit request for maintainers.
+**Model Pipeline**
+
+The main training and evaluation pipeline is implemented in main.py. It includes:
+
+Sample generation and feature extraction.
+
+Data splitting and standardisation.
+
+**Training a classification pipeline using:**
+
+QUANTTransformer()
+
+StandardScaler()
+
+LogisticRegression()
+
+Performance evaluation using accuracy, precision, recall, and F1-score.
+
+Dependencies
+
+Install dependencies with:
+
+pip install -r requirements.txt
+
+Main packages:
+
+numpy, pandas, scikit-learn
+
+aeon for time series transformation and classification
+
+matplotlib, seaborn for visualisation
+
+File Structure
+
+├── sample_generation.py     # Sample generation strategies
+├── main.py                  # Main training and evaluation pipeline
+├── utils.py                 # Helper functions for data loading and processing
+├── config.py                # Configuration constants 
+├── notebooks/               # Exploratory notebooks 
+├── data/                    # Data folder (not included in repo)
+├── requirements.txt         # Dependencies
+└── README.md                # This file
+
+**Acknowledgements**
+
+This project is inspired by and builds upon:
+
+Ghosh et al. (2024) - Multi-modal detection of fetal movements using a wearable monitor
+
+Lai et al. (2016) - Fetal movements as a predictor of health
+
+Middlehurst et al. (2023) - Evaluation of recent time series classification algorithms
+
+**Disclaimer**
+
+This repository does not include any patient-identifiable data. For access to the FeMo dataset, contact Colin Boyle and relevant authorities.
+
+For questions or collaboration opportunities, please contact Treasa Murphy.
