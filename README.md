@@ -51,6 +51,18 @@ You can also document commands to lint the code or run tests. These steps help t
 ## Authors and acknowledgment
 Show your appreciation to those who have contributed to the project.
 
+## Data Access
+
+This repository does not include the raw data due to privacy restrictions.
+
+To use this code:
+1. Mount your Google Drive in Google Colab.
+2. Set the `DATA_PATH` in `utils.py` to the appropriate location.
+3. Use `load_metadata()` and `load_sensor_data()` from `utils.py`.
+
+> Contact the project supervisor for access to FeMo1 data if authorised.
+
+
 ## License
 For open source projects, say how it is licensed.
 
