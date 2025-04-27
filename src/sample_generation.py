@@ -26,107 +26,122 @@ from collections import Counter
 
 # strategy 1: sample generation from pre/post click and random no-click windows
 
-def generate_positive_samples_strategy_1(data, window_size=5, before_click=3, after_click=2, sampling_rate=1024):
-    """generates positive samples (windows around clicks) with no overlap."""
-    # initialise list to store samples
+
+def generate_positive_samples_strategy_1_numpy(data, window_size=5, before_click=3, after_click=2, sampling_rate=1024):
+    """Generates positive samples (NumPy arrays) around button clicks, no overlap."""
     positive_samples = []
-    # get indices where a button was clicked
     click_indices = data.index[data[('button', 'button')] == 1].tolist()
     last_end_index = 0
-    sample_num = 0
 
     for click_index in click_indices:
-        # convert multiindex to position
-        click_index_location = data.index.get_loc(click_index)
-        # define start and end of 5-second window
-        start_index = max(0, click_index_location - int(before_click * sampling_rate))
-        end_index = min(len(data), click_index_location + int(after_click * sampling_rate))
+        click_location = data.index.get_loc(click_index)
+        start_index = max(0, click_location - int(before_click * sampling_rate))
+        end_index = min(len(data), click_location + int(after_click * sampling_rate))
 
-        # only add sample if it doesn't overlap with previous one
         if start_index > last_end_index:
-            window = data.iloc[start_index:end_index].copy()
-            window['sample_num'] = sample_num
-            positive_samples.append(window)
-            sample_num += 1
+            window = data.iloc[start_index:end_index]
+
+            # Extract p1 and p4 as numpy
+            if ('piezos', 'p1') in window.columns and ('piezos', 'p4') in window.columns:
+                sample_np = window[[('piezos', 'p1'), ('piezos', 'p4')]].values.T  # shape: (2, N)
+                if sample_np.shape[1] == window_size * sampling_rate:
+                    positive_samples.append(sample_np)
+
             last_end_index = end_index
 
-    return positive_samples
+    return np.array(positive_samples)
 
-def generate_negative_samples_strategy_1(data, window_size=5, sampling_rate=1024, max_samples=1904, min_distance=5120):
-    """generates random negative samples (button == 0) with no overlap."""
-    all_negative_samples = []
-    sample_num = 0
-    last_end_index = 0
-    last_s3key = None
 
-    for s3key, group_data in data.groupby(level=0):
-        # get indices where button == 0
-        non_click_indices = group_data.index[group_data[('button', 'button')] == 0].tolist()
-        # determine number of negative samples to take from this group
-        num_samples = int(max_samples / len(data.groupby(level=0)))
-        # randomly sample from the negative indices
-        selected_indices = random.sample(non_click_indices, min(num_samples, len(non_click_indices)))
+def generate_negative_samples_strategy_1(data_list, window_size=5120, max_samples=13000):
+    """
+    Generates and reshapes negative samples (no button clicks) from the provided data using NumPy.
 
-        for index in selected_indices:
-            if sample_num >= max_samples:
-                break
+    Args:
+        data_list: A list of NumPy arrays, where each array represents data for a session.
+                   Each array is expected to have columns for p1, p4, button (in that order).
+        window_size: The size of the window (in samples) to extract. Defaults to 5120.
+        max_samples: The maximum number of negative samples to generate. Defaults to 4000.
 
-            # convert to position index
-            index_location = group_data.index.get_loc(index)
-            # get window start and end
-            start_index = index_location - int(window_size * sampling_rate // 2)
-            end_index = start_index + int(window_size * sampling_rate)
+    Returns:
+        A NumPy array of negative samples, each reshaped to (2, window_size).
+    """
+    negative_samples = []
+    total_samples_generated = 0
 
-            # enforce distance between samples from the same s3key
-            if last_s3key == s3key:
-                start_index = max(last_end_index + min_distance, start_index)
+    for data_array in data_list:
+        if total_samples_generated >= max_samples:
+            break
 
-            # adjust if window exceeds session length
-            if end_index > len(group_data):
-                start_index = len(group_data) - int(window_size * sampling_rate)
-                end_index = len(group_data)
+        p1_data = data_array[:, 0]
+        p4_data = data_array[:, 1]
+        button_data = data_array[:, 2]
 
-            window = group_data.iloc[start_index:end_index]
+        # find indices where button == 0 (no movement detected)
+        non_click_indices = np.where(button_data == 0)[0]
 
-            # check no button press and correct window size
-            if not window[('button', 'button')].any() and len(window) == int(window_size * sampling_rate):
-                all_negative_samples.append(window)
-                sample_num += 1
-                last_end_index = end_index
-                last_s3key = s3key
+        # randomly choose starting points for negative samples
+        num_samples_to_generate = min(len(non_click_indices), max_samples - total_samples_generated)
+        if num_samples_to_generate == 0:
+            continue
 
-    return all_negative_samples
+        start_indices = np.random.choice(non_click_indices, size=num_samples_to_generate, replace=False)
+
+        for start_index in start_indices:
+            if start_index + window_size <= len(p1_data):
+                # extract 5 seconds of data for p1 and p4
+                p1_window = p1_data[start_index:start_index + window_size]
+                p4_window = p4_data[start_index:start_index + window_size]
+
+                # stack p1 and p4 together (shape: (2, window_size))
+                sample = np.stack([p1_window, p4_window], axis=0)
+
+                negative_samples.append(sample)
+                total_samples_generated += 1
+
+    return np.array(negative_samples)
+
+#-------------------#
 
 # strategy 2: non-overlapping fixed-length windows based on click presence
 
-def generate_samples_strategy_2(data, s3key, window_size=5, num_windows=None, sampling_rate=1024):
-    """splits session into fixed-size windows and labels by click presence."""
+def generate_samples_strategy_2_numpy(data, s3key, window_size=5, num_windows=None, sampling_rate=1024):
+    """
+    Splits a session into fixed-size windows and labels them by click presence.
+    Returns a list of (sample_array, label) tuples.
+    """
     labelled_windows = []
     session_data = data.loc[s3key]
     window_length = int(window_size * sampling_rate)
     total_samples = len(session_data)
 
-    # calculate number of windows if not given
     if num_windows is None:
         num_windows = total_samples // window_length
 
     for i in range(num_windows):
-        # define start and end of window
         start_index = i * window_length
         end_index = min(start_index + window_length, total_samples)
         window_data = session_data.iloc[start_index:end_index]
-        # assign label: 1 if any click in window, else 0
-        label = 1 if window_data[('button', 'button')].sum() > 0 else 0
-        labelled_windows.append((window_data, label))
+
+        # only keep if full window
+        if len(window_data) == window_length:
+            if ('piezos', 'p1') in window_data.columns and ('piezos', 'p4') in window_data.columns:
+                sample_np = window_data[[('piezos', 'p1'), ('piezos', 'p4')]].values.T  # shape (2, window_length)
+
+                # assign label: 1 if any click in window, else 0
+                label = 1 if window_data[('button', 'button')].sum() > 0 else 0
+
+                labelled_windows.append((sample_np, label))
 
     return labelled_windows
 
 def calculate_num_windows(data, window_size=5, sampling_rate=1024):
-    """calculates number of windows per session."""
+    """Calculates number of non-overlapping windows per session."""
     return {
         s3key: len(group) // (window_size * sampling_rate)
         for s3key, group in data.groupby(level=0)
     }
+
+#-------------------#
 
 # strategy 3: positive sampling with shifting windows
 
