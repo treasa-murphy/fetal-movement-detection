@@ -8,8 +8,8 @@ This project investigates the application of machine learning and time series cl
 
 ![Fetal Movement Monitoring](images/femo-belt.jpeg)
 
-**Figure 1.** Hardware system for the wearable fetal movement monitor.  
-(a) Sensors embedded in an elastic belt, (b) belt worn by a pregnant participant, (c) CAD design of the custom-made acoustic sensor, and (d) miniaturised (62 mm × 31 mm) DAQ system designed for the FM monitor.  
+**Figure 1.** Hardware system for the wearable fetal movement monitor. (a) Sensors embedded in an elastic belt, (b) belt worn by a pregnant participant, (c) CAD design of the custom-made acoustic sensor, and (d) miniaturised (62 mm × 31 mm) DAQ system designed for the FM monitor.  
+
 *Image adapted from Ghosh et al., 2024. [Source](https://www.sciencedirect.com/science/article/pii/S1566253523004402).*
 
 ---
