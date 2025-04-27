@@ -46,6 +46,21 @@ hospital_sessions = all_supervised_sessions[all_supervised_sessions["hospital_se
 print(f"No. of maternal button-press sessions (total): {all_supervised_sessions.shape[0]}")
 print(f"No. of hospital-based maternal button-press sessions: {hospital_sessions.shape[0]}")
 
+# --- splitting train/test (by study ID) ---
+
+# unique study IDs
+uniqe_study_ids = hospital_sessions["study_id"].unique()
+
+# train/test split (70/30 stratified -> set seed for reproduction)
+train_study_ids, test_study_ids = train_test_split(uniqe_study_ids, test_size=0.3, random_state=42)
+
+# Assign sessions to train or test based on study ID
+train_sessions = hospital_sessions[hospital_sessions["study_id"].isin(train_study_ids)]
+test_sessions = hospital_sessions[hospital_sessions["study_id"].isin(test_study_ids)]
+
+print(f"Train sessions: {train_sessions.shape[0]}")
+print(f"Test sessions: {test_sessions.shape[0]}")
+
 # --- trim the start and end of each training session (remove first & last 60 seconds) ---
 
 # sampling rate
