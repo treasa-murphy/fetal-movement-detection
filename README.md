@@ -59,7 +59,16 @@ The dataset was collected by clinicians at a maternity hospital in Ireland and i
 
   **Fig. 3.** Example of a Strategy 1 positive sample. A 5-second window centred around a maternally-perceived fetal movement event is shown. The window includes 3 seconds before and 2 seconds after the button press, with p1 and p4 piezoelectric sensor signals displayed. The positive label captures movement-related signal changes surrounding the click event.
 
-  - **Strategy 2:** Segmented entire sessions into non-overlapping 5-second windows, labelling windows based on the presence or absence of a button-click.  
+  - **Strategy 2:** Segmented entire sessions into non-overlapping 5-second windows, labelling windows based on the presence or absence of a button-click. 
+
+    &nbsp;
+    
+    ![Fetal Movement Monitoring](images/samples-2/neg-sample-2.png)
+
+    **Fig. 4.**: Example of a Strategy 2 negative sample. The plot shows a 5-second window where no
+    maternally-perceived fetal movements were reported, with signals from both p1 and p4 piezoelectric
+    sensors displayed. The absence of button clicks across the window led to the negative label. Both
+    sensor signals capture background activity without any distinct fetal movement patterns
 
   - **Strategy 3:** Introduced overlapping positive windows around click events to augment the number of movement samples and enhance recall.
 
