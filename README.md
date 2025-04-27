@@ -1,108 +1,108 @@
-**Saving Babies With Machine Learning and Time Series Analysis**
+## **Saving Babies With Machine Learning and Time Series Analysis**
 
-**Overview**
+![Fetal Movement Monitoring](images/fyp-fmm-pregnancy.png)
 
-This project investigates the use of machine learning and time series classification techniques to detect fetal movements based on wearable sensor data. The data was collected by a maternity hospital in Ireland and includes signals from piezoelectric sensors and maternal button presses used to indicate sensed fetal movements. Accurately detecting fetal movement is essential for prenatal care, offering critical insights into the health and wellbeing of the fetus.
+### **Overview**
 
-**Problem Statement**
+This project investigates the application of machine learning and time series classification techniques for fetal movement detection using wearable sensor data. The dataset, collected by clinicians at a maternity hospital in Ireland, was recorded using the FeMo (Fetal Movement Monitoring) belt, a non-invasive wearable system equipped with piezoelectric sensors. It includes sensor signals alongside maternal button-press annotations marking perceived fetal movements. Accurate detection of fetal movements is critical for prenatal care, providing early indicators of fetal health and wellbeing. The goal of this work is to contribute towards the development of lightweight, scalable, and non-invasive prenatal monitoring systems, enabling more accessible and proactive maternal healthcare.
 
-Time series data reflecting fetal movements presents an opportunity to better understand fetal health. With the help of machine learning, this project aims to:
+---
 
-Preprocess and structure a sensor dataset for machine learning.
+### **Dataset**
 
-Explore different strategies for generating labelled samples.
+The dataset was collected by clinicians at a maternity hospital in Ireland and involved 40 participants at 36 to 40 weeks of gestation. Data was recorded using the FeMo wearable monitoring system, with particular focus on belts A and C, which incorporated large piezoelectric sensors positioned at p1 and p4. For this study, only the supervised hospital sessions were used, where participants manually annotated perceived fetal movements by pressing a button. These annotations served as the ground truth for model training and evaluation.
 
-Evaluate various time series classification models.
+---
 
-Improve the precision of fetal movement detection to support better clinical outcomes.
+### **Project Objectives**
 
-**Dataset**
+- Explore the use of state-of-the-art time series classification techniques (Quant, Rocket, Hydra) for fetal movement detection.
+- Develop an efficient, lightweight pipeline optimised for minimalistic wearable sensor data.
+- Investigate the impact of different sample generation strategies and class balancing techniques on classification performance.
+- Evaluate model performance using participant-independent splits to ensure generalisability.
+- Assess whether accurate movement detection is achievable using piezoelectric sensor data (p1 and p4), without the need for complex sensor fusion.
+- Identify challenges and opportunities for future research towards scalable, non-invasive prenatal monitoring systems.
 
-The dataset includes:
+---
 
-Wearable sensor recordings (piezoelectric signals).
+### **Methodology**
 
-Maternal button-press labels indicating perceived fetal movements.
+- **Data Preprocessing:**  
+  - Cleaned and validated raw sensor data.
+  - Focused on signals from piezoelectric sensors p1 and p4.
+  - Excluded noisy segments (e.g., belt adjustment periods).
 
-Due to privacy restrictions, the dataset is not included in this repository. If authorised, you may access the dataset via secure institutional channels.
+- **Sample Generation Strategies:**  
+  - **Strategy 1:** Non-overlapping 5-second windows centred around maternal button-clicks.
+  - **Strategy 2:** Non-overlapping 5-second windows across entire sessions, labelled based on presence of a button-click.
+  - **Strategy 3:** Introduced overlapping positive windows to augment movement samples and boost recall.
 
-**Project Objectives**
+- **Model Training and Evaluation:**  
+  - Compared state-of-the-art time series classifiers: Quant, Rocket, Hydra.
+  - Selected QUANT + Scaling + LDA pipeline for focused experimentation based on initial results.
+  - Applied class balancing techniques to address dataset imbalance (2:1 negative:positive and positive:negative setups).
 
-Dataset exploration: Understand the structure of the data and perform necessary preprocessing.
+- **Performance Metrics:**  
+  - Evaluated models using F1-Score, average accuracy, precision, and recall.
+  - Used participant-independent splits to measure generalisation performance.
 
-Exploratory data analysis: Visualise patterns, frequencies, and durations of fetal movements.
+---
 
-Model development: Implement machine learning models to detect movements using labelled time series segments.
+### **Key Results**
 
-Evaluation: Validate models against ground truth labels and compare classifiers.
+- Accurate fetal movement classification is feasible using a minimalistic sensor configuration.
+- Best-performing pipeline (QUANT + Scaling + LDA) achieved:  
+  - **F1-Score:** 0.52  
+  - **Average Accuracy:** 0.65  
+  (using p1 sensor data with balanced training and testing)
+- Incorporating p4 alongside p1 did not significantly improve generalisation compared to using p1 alone.
+- Targeted sampling strategies (Strategy 1) and rigorous class balancing were critical to improving model performance.
+- Overlapping positive samples (Strategy 3) boosted recall but introduced more false positives, highlighting a trade-off between sensitivity and specificity.
 
-Interdisciplinary insight: Collaborate with experts from Computer Science and Biomedical Engineering for clinical relevance.
+---
 
-**Sample Generation Strategies**
+### **Project Structure**
 
-Implemented in sample_generation.py:
+- `/data/` — Contains raw and preprocessed datasets (not included in public repository).
+- `/notebooks/` — Jupyter notebooks for exploratory analysis, sample generation, and model training.
+- `/models/` — Trained model files and evaluation results.
+- `/src/` — Source code including sample generation scripts, feature extraction, and classification pipelines.
+- `README.md` — Project overview and documentation.
+- `requirements.txt` — List of Python dependencies.
 
-Strategy 1: Pre/post click sampling using fixed non-overlapping windows.
+---
 
-Strategy 2: Non-overlapping fixed-length windows labelled based on the presence of clicks.
+### **Future Work**
 
-Strategy 3: Augmented positive samples by applying multiple shifts to windowed segments surrounding a click.
+- Incorporate multimodal sensor fusion by combining piezoelectric and IMU sensor data.
+- Extend validation to include unsupervised home recording sessions.
+- Explore deep learning architectures such as CNNs and hybrid CNN-LSTM models.
+- Integrate real-time movement detection capabilities.
+- Validate findings using ultrasound-confirmed movement annotations.
 
-**Model Pipeline**
+---
 
-The main training and evaluation pipeline is implemented in main.py. It includes:
+### **Acknowledgements**
 
-Sample generation and feature extraction.
+I would like to thank Assoc. Prof. Georgiana Ifrim for her exceptional supervision and guidance throughut this project. I am also grateful to Dr. Colin Boyle and Prof. Niamh Nowlan from the FeMo team for their biomedical engineering insights. Special thanks to the mothers who participated in the FeMo study for making this research possible.
 
-Data splitting and standardisation.
+---
 
-**Training a classification pipeline using:**
+### **Disclaimer**
 
-QUANTTransformer()
+This project was conducted solely for academic research purposes.  
+The models and findings presented here are not intended for clinical use without further validation and regulatory approval.
 
-StandardScaler()
 
-LogisticRegression()
 
-Performance evaluation using accuracy, precision, recall, and F1-score.
 
-Dependencies
 
-Install dependencies with:
 
-pip install -r requirements.txt
 
-Main packages:
 
-numpy, pandas, scikit-learn
 
-aeon for time series transformation and classification
 
-matplotlib, seaborn for visualisation
 
-File Structure
 
-├── sample_generation.py     # Sample generation strategies
-├── main.py                  # Main training and evaluation pipeline
-├── utils.py                 # Helper functions for data loading and processing
-├── config.py                # Configuration constants 
-├── notebooks/               # Exploratory notebooks 
-├── data/                    # Data folder (not included in repo)
-├── requirements.txt         # Dependencies
-└── README.md                # This file
 
-**Acknowledgements**
 
-This project is inspired by and builds upon:
-
-Ghosh et al. (2024) - Multi-modal detection of fetal movements using a wearable monitor
-
-Lai et al. (2016) - Fetal movements as a predictor of health
-
-Middlehurst et al. (2023) - Evaluation of recent time series classification algorithms
-
-**Disclaimer**
-
-This repository does not include any patient-identifiable data. For access to the FeMo dataset, contact Colin Boyle and relevant authorities.
-
-For questions or collaboration opportunities, please contact Treasa Murphy.
