@@ -76,6 +76,8 @@ The dataset was collected by clinicians at a maternity hospital in Ireland and i
 
   - **Strategy 3:** Introduced overlapping positive windows around click events to augment the number of movement samples and enhance recall.
 
+<div align="center">
+
 <br>
 
 <!-- Row 1 -->
@@ -98,6 +100,8 @@ The dataset was collected by clinicians at a maternity hospital in Ireland and i
 were generated from a single button press event by shifting the window slightly forward and
 backward. Signals from p1 and p4 are shown across different shifted windows, enhancing training
 diversity while targeting the same fetal movement event.
+
+</div>
 
 **3. Model Training:**  
 
