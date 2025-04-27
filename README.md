@@ -6,6 +6,7 @@
 
 This project investigates the application of machine learning and time series classification techniques for fetal movement detection using wearable sensor data. The dataset, collected by clinicians at a maternity hospital in Ireland, was recorded using the FeMo (Fetal Movement Monitoring) belt, a non-invasive wearable system equipped with piezoelectric sensors. It includes sensor signals alongside maternal button-press annotations marking perceived fetal movements. Accurate detection of fetal movements is critical for prenatal care, providing early indicators of fetal health and wellbeing. The goal of this work is to contribute towards the development of lightweight, scalable, and non-invasive prenatal monitoring systems, enabling more accessible and proactive maternal and fetal healthcare.
 
+&nbsp;
 
 ![Fetal Movement Monitoring](images/femo-belt.jpeg)
 
