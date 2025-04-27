@@ -40,6 +40,9 @@ The dataset was collected by clinicians at a maternity hospital in Ireland and i
 - **Model Training and Evaluation:**  
   - Compared state-of-the-art time series classifiers: Quant, Rocket, Hydra.
   - Selected QUANT + Scaling + LDA pipeline for focused experimentation based on initial results.
+
+  ![Fetal Movement Monitoring](images/fmm-pipeline.png)
+
   - Applied class balancing techniques to address dataset imbalance (2:1 negative:positive and positive:negative setups).
 
 - **Performance Metrics:**  
