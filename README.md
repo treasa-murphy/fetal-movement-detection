@@ -54,6 +54,7 @@ The dataset was collected by clinicians at a maternity hospital in Ireland and i
 
 **Fig. 2.** Example of raw sensor data recorded during a 3-minute hospital session. Signals from piezoelectric sensors (p1 and p4), accelerometers, and maternal button-click annotations are shown, illustrating the complexity and variability of the recorded fetal movement data.
 
+
 **2. Sample Generation:**  
 
   - **Strategy 1:** Generated non-overlapping 5-second windows centred around maternally annotated button-click events, targeting periods of fetal movement.
@@ -103,6 +104,7 @@ were generated from a single button press event by shifting the window slightly 
 backward. Signals from p1 and p4 are shown across different shifted windows, enhancing training
 diversity while targeting the same fetal movement event.
 
+
 **3. Model Training:**  
 
   - Initially compared state-of-the-art time series classifiers, including Quant, Rocket, and Hydra, alongside conventional machine learning models.
@@ -116,6 +118,7 @@ diversity while targeting the same fetal movement event.
 ![Fetal Movement Detection Pipeline](images/fmm-pipeline.png)  
 
 **Figure 2.**  Final classification pipeline used in this project. The pipeline consists of a QUANTTransformer for feature extraction, followed by StandardScaler for normalisation, and LinearDiscriminantAnalysis (LDA) for classification.
+
 
 **4. Evaluation** 
 
