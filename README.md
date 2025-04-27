@@ -74,17 +74,17 @@ The dataset was collected by clinicians at a maternity hospital in Ireland and i
 <br>
 
 <!-- Row 1 -->
-<p align="right">
-  <img src="images/samples-3/pos-sample-3-1-a.png" width="30%" />
-  <img src="images/samples-3/pos-sample-3-2-a.png" width="30%" />
-  <img src="images/samples-3/pos-sample-3-3-a.png" width="30%" />
+<p align="center">
+  <img src="images/samples-3/pos-sample-3-1-a.png" width="33%" />
+  <img src="images/samples-3/pos-sample-3-2-a.png" width="33%" />
+  <img src="images/samples-3/pos-sample-3-3-a.png" width="33%" />
 </p>
 
 <!-- Row 2 -->
-<p align="right">
-  <img src="images/samples-3/pos-sample-3-1-b.png" width="30%" />
-  <img src="images/samples-3/pos-sample-3-2-b.png" width="30%" />
-  <img src="images/samples-3/pos-sample-3-3-b.png" width="30%" />
+<p align="center">
+  <img src="images/samples-3/pos-sample-3-1-b.png" width="33%" />
+  <img src="images/samples-3/pos-sample-3-2-b.png" width="33%" />
+  <img src="images/samples-3/pos-sample-3-3-b.png" width="33%" />
 </p>
 
 <br>
