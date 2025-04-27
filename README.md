@@ -35,7 +35,7 @@ The dataset was collected by clinicians at a maternity hospital in Ireland and i
 
 ### **Methodology**
 
-- **Data Preprocessing:**  
+**1. Data Preprocessing:**  
   - Cleaned and validated raw sensor data collected from wearable FeMo belts.  
   - Focused analysis on signals from piezoelectric sensors p1 and p4, which consistently provided the highest signal quality.  
   - Removed noisy segments such as belt adjustment periods by trimming the first and last minutes of each hospital recording session.
@@ -46,29 +46,33 @@ The dataset was collected by clinicians at a maternity hospital in Ireland and i
 
 **Fig. 2.** Example of raw sensor data recorded during a 3-minute hospital session. Signals from piezoelectric sensors (p1 and p4), accelerometers, and maternal button-click annotations are shown, illustrating the complexity and variability of the recorded fetal movement data.
 
-- **Sample Generation Strategies:**  
-  - **Strategy 1:** Generated non-overlapping 5-second windows centred around maternally annotated button-click events, targeting periods of fetal movement.  
+**2. Sample Generation:**  
+
+  - **Strategy 1:** Generated non-overlapping 5-second windows centred around maternally annotated button-click events, targeting periods of fetal movement.
+
   - **Strategy 2:** Segmented entire sessions into non-overlapping 5-second windows, labelling windows based on the presence or absence of a button-click.  
+
   - **Strategy 3:** Introduced overlapping positive windows around click events to augment the number of movement samples and enhance recall.
 
-- **Model Training and Evaluation:**  
+**3. Model Training:**  
   - Initially compared state-of-the-art time series classifiers, including Quant, Rocket, and Hydra, alongside conventional machine learning models.  
   - Selected a lightweight pipeline combining QUANT feature extraction, StandardScaler, and Linear Discriminant Analysis (LDA) based on superior baseline performance.  
   - Applied class balancing techniques, evaluating both 2:1 negative-to-positive and 2:1 positive-to-negative setups to address dataset imbalance.  
   - Focused subsequent experiments on refining and evaluating the QUANT + Scaling + LDA pipeline.
 
-- **Pipeline Overview:**  
+**Pipeline Overview:**  
 
 ![Fetal Movement Detection Pipeline](images/fmm-pipeline.png)  
 
 **Figure 2.**  Final classification pipeline used in this project. The pipeline consists of a QUANTTransformer for feature extraction, followed by StandardScaler for normalisation, and LinearDiscriminantAnalysis (LDA) for classification.
 
-- **Performance Metrics:**  
+**4. Evaluation** 
+
   - Models were evaluated using F1-Score, average accuracy, precision, and recall to account for class imbalance and clinical relevance.  
+
   - Strict participant-independent train-test splits were used to robustly measure model generalisation across unseen subjects.
 
 ---
-
 
 ### **Key Results**
 
