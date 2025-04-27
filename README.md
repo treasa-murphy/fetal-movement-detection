@@ -36,39 +36,62 @@ The dataset was collected by clinicians at a maternity hospital in Ireland and i
 ### **Methodology**
 
 - **Data Preprocessing:**  
-  - Cleaned and validated raw sensor data.
-  - Focused on signals from piezoelectric sensors p1 and p4.
-  - Excluded noisy segments (e.g., belt adjustment periods).
+  - Cleaned and validated raw sensor data collected from wearable FeMo belts.  
+  - Focused analysis on signals from piezoelectric sensors p1 and p4, which consistently provided the highest signal quality.  
+  - Removed noisy segments such as belt adjustment periods by trimming the first and last minutes of each hospital recording session.
 
 - **Sample Generation Strategies:**  
-  - **Strategy 1:** Non-overlapping 5-second windows centred around maternal button-clicks.
-  - **Strategy 2:** Non-overlapping 5-second windows across entire sessions, labelled based on presence of a button-click.
-  - **Strategy 3:** Introduced overlapping positive windows to augment movement samples and boost recall.
+  - **Strategy 1:** Generated non-overlapping 5-second windows centred around maternally annotated button-click events, targeting periods of fetal movement.  
+  - **Strategy 2:** Segmented entire sessions into non-overlapping 5-second windows, labelling windows based on the presence or absence of a button-click.  
+  - **Strategy 3:** Introduced overlapping positive windows around click events to augment the number of movement samples and enhance recall.
 
 - **Model Training and Evaluation:**  
-  - Compared state-of-the-art time series classifiers: Quant, Rocket, Hydra.
-  - Selected QUANT + Scaling + LDA pipeline for focused experimentation based on initial results.
+  - Initially compared state-of-the-art time series classifiers, including Quant, Rocket, and Hydra, alongside conventional machine learning models.  
+  - Selected a lightweight pipeline combining QUANT feature extraction, StandardScaler, and Linear Discriminant Analysis (LDA) based on superior baseline performance.  
+  - Applied class balancing techniques, evaluating both 2:1 negative-to-positive and 2:1 positive-to-negative setups to address dataset imbalance.  
+  - Focused subsequent experiments on refining and evaluating the QUANT + Scaling + LDA pipeline.
 
-  ![Fetal Movement Monitoring](images/fmm-pipeline.png)
+- **Pipeline Overview:**  
 
-  - Applied class balancing techniques to address dataset imbalance (2:1 negative:positive and positive:negative setups).
+![Fetal Movement Detection Pipeline](images/fmm-pipeline.png)  
+
+**Figure 2.**  Final classification pipeline used in this project. The pipeline consists of a QUANTTransformer for feature extraction, followed by StandardScaler for normalisation, and LinearDiscriminantAnalysis (LDA) for classification.
 
 - **Performance Metrics:**  
-  - Evaluated models using F1-Score, average accuracy, precision, and recall.
-  - Used participant-independent splits to measure generalisation performance.
+  - Models were evaluated using F1-Score, average accuracy, precision, and recall to account for class imbalance and clinical relevance.  
+  - Strict participant-independent train-test splits were used to robustly measure model generalisation across unseen subjects.
 
 ---
 
+
 ### **Key Results**
 
-- Accurate fetal movement classification is feasible using a minimalistic sensor configuration.
-- Best-performing pipeline (QUANT + Scaling + LDA) achieved:  
+- **Feasibility:**  
+
+  Baseline fetal movement classification is achievable using a minimalistic, non-invasive sensor configuration. The results provide a strong foundation for future research in scalable prenatal monitoring.
+
+- **Best Pipeline Performance:**  
+
+  - **Pipeline:** QUANT + Scaling + LDA  
   - **F1-Score:** 0.52  
   - **Average Accuracy:** 0.65  
-  (using p1 sensor data with balanced training and testing)
-- Incorporating p4 alongside p1 did not significantly improve generalisation compared to using p1 alone.
-- Targeted sampling strategies (Strategy 1) and rigorous class balancing were critical to improving model performance.
-- Overlapping positive samples (Strategy 3) boosted recall but introduced more false positives, highlighting a trade-off between sensitivity and specificity.
+  (achieved using p1 sensor data with balanced training and testing sets)
+
+- **Sensor Findings:**  
+
+  - Adding p4 alongside p1 did not significantly improve model generalisation.  
+  - p1 alone provided more consistent and reliable performance.
+
+- **Sampling Strategy Insights:**  
+
+  - Targeted sampling around maternal clicks (Strategy 1) was essential for capturing relevant movement events.  
+  - Rigorous class balancing greatly improved F1-score and recall.
+
+- **Augmentation Trade-Offs:**  
+
+  - Overlapping positive windows (Strategy 3) substantially boosted recall.  
+  - However, it increased false positives, reflecting a classic sensitivity-specificity trade-off.
+
 
 ---
 
