@@ -189,7 +189,7 @@ I would like to thank Assoc. Prof. Georgiana Ifrim for her exceptional supervisi
 
 ### Research Report
 
-A detailed report describing the project background, methodology, experimental results, and conclusions is available [here](link-to-pdf).
+A detailed report describing the project background, methodology, experimental results, and conclusions is available [here](https://drive.google.com/file/d/1ObelTvrsDieoeYi5YcThT6TfO_KBpNmf/view?usp=sharing).
 
 ---
 
