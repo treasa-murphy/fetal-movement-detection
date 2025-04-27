@@ -36,8 +36,11 @@ The dataset was collected by clinicians at a maternity hospital in Ireland and i
 ### **Methodology**
 
 **1. Data Preprocessing:**  
+
   - Cleaned and validated raw sensor data collected from wearable FeMo belts.  
+
   - Focused analysis on signals from piezoelectric sensors p1 and p4, which consistently provided the highest signal quality.  
+
   - Removed noisy segments such as belt adjustment periods by trimming the first and last minutes of each hospital recording session.
 
 &nbsp;
@@ -49,15 +52,25 @@ The dataset was collected by clinicians at a maternity hospital in Ireland and i
 **2. Sample Generation:**  
 
   - **Strategy 1:** Generated non-overlapping 5-second windows centred around maternally annotated button-click events, targeting periods of fetal movement.
+  
+  &nbsp;
+
+  ![Fetal Movement Monitoring](images/samples-1/pos-sample-1.png)
+
+  **Fig. 3.** Example of a Strategy 1 positive sample. A 5-second window centred around a maternally-perceived fetal movement event is shown. The window includes 3 seconds before and 2 seconds after the button press, with p1 and p4 piezoelectric sensor signals displayed. The positive label captures movement-related signal changes surrounding the click event.
 
   - **Strategy 2:** Segmented entire sessions into non-overlapping 5-second windows, labelling windows based on the presence or absence of a button-click.  
 
   - **Strategy 3:** Introduced overlapping positive windows around click events to augment the number of movement samples and enhance recall.
 
 **3. Model Training:**  
-  - Initially compared state-of-the-art time series classifiers, including Quant, Rocket, and Hydra, alongside conventional machine learning models.  
+
+  - Initially compared state-of-the-art time series classifiers, including Quant, Rocket, and Hydra, alongside conventional machine learning models.
+
   - Selected a lightweight pipeline combining QUANT feature extraction, StandardScaler, and Linear Discriminant Analysis (LDA) based on superior baseline performance.  
+
   - Applied class balancing techniques, evaluating both 2:1 negative-to-positive and 2:1 positive-to-negative setups to address dataset imbalance.  
+
   - Focused subsequent experiments on refining and evaluating the QUANT + Scaling + LDA pipeline.
 
 **Pipeline Overview:**  
@@ -78,14 +91,14 @@ The dataset was collected by clinicians at a maternity hospital in Ireland and i
 
 - **Feasibility:**  
 
-  Baseline fetal movement classification is achievable using a minimalistic, non-invasive sensor configuration. The results provide a strong foundation for future research in scalable prenatal monitoring.
+  Baseline fetal movement classification is achievable using a minimalistic, non-invasive sensor configuration. The results provide a strong foundation for future research in scalable prenatal monitoring. 
 
 - **Best Pipeline Performance:**  
 
   - **Pipeline:** QUANT + Scaling + LDA  
+  - **Data:**: Achieved using p1 sensor data with balanced training and testing sets
   - **F1-Score:** 0.52  
   - **Average Accuracy:** 0.65  
-  (achieved using p1 sensor data with balanced training and testing sets)
 
 - **Sensor Findings:**  
 
