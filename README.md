@@ -119,7 +119,6 @@ diversity while targeting the same fetal movement event.
 
 **Figure 2.**  Final classification pipeline used in this project. The pipeline consists of a QUANTTransformer for feature extraction, followed by StandardScaler for normalisation, and LinearDiscriminantAnalysis (LDA) for classification.
 
-&nbsp;
 **4. Evaluation** 
 
   - Models were evaluated using F1-Score, average accuracy, precision, and recall to account for class imbalance and clinical relevance.  
@@ -133,6 +132,10 @@ diversity while targeting the same fetal movement event.
 Baseline fetal movement classification was shown to be achievable using a minimalistic, non-invasive sensor configuration. Although not yet clinically deployable, the results provide a strong foundation for future research into scalable prenatal monitoring systems.
 
 The best-performing pipeline combined QUANT feature extraction, scaling, and Linear Discriminant Analysis (LDA). Using p1 sensor data with balanced training and testing sets, this approach achieved an F1-score of 0.52 and an average accuracy of 0.65.
+
+![Fetal Movement Monitoring](images/strategy_1_b_t_t_cm.png)
+
+**Figure 4:** Confusion matrix illustrating the performance of the QUANT + Scaling + LDA pipeline on balanced p1 sensor data with a participant-independent train-test split.
 
 Experiments investigating the addition of p4 signals alongside p1 revealed that p1 alone provided more consistent and reliable performance, with no significant improvement observed from multi-sensor input.
 
@@ -179,6 +182,12 @@ The repository is organised as follows:
 ### **Acknowledgements**
 
 I would like to thank Assoc. Prof. Georgiana Ifrim for her exceptional supervision and guidance througohut this project. I am also grateful to Dr. Colin Boyle and Prof. Niamh Nowlan from the FeMo team for their biomedical engineering expertise. Special thanks to the mothers who participated in the FeMo study for making this research possible.
+
+---
+
+### Research Report
+
+A detailed report describing the project background, methodology, experimental results, and conclusions is available [here](link-to-pdf).
 
 ---
 
