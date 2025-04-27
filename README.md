@@ -71,22 +71,23 @@ The dataset was collected by clinicians at a maternity hospital in Ireland and i
 
   - **Strategy 3:** Introduced overlapping positive windows around click events to augment the number of movement samples and enhance recall.
 
-    &nbsp;
-  <!-- Row 1 -->
-    <p align="center">
-    <img src="images/samples-3/pos-sample-3-1-a.png" width="30%" />
-    <img src="images/samples-3/pos-sample-3-2-a.png" width="30%" />
-    <img src="images/samples-3/pos-sample-3-3-a.png" width="30%" />
-    </p>
+<br>
 
-    <!-- Row 2 -->
-    <p align="center">
-    <img src="images/samples-3/pos-sample-3-1-b.png" width="30%" />
-    <img src="images/samples-3/pos-sample-3-2-b.png" width="30%" />
-    <img src="images/samples-3/pos-sample-3-3-b.png" width="30%" />
-    </p>
+<!-- Row 1 -->
+<p align="center">
+  <img src="images/samples-3/pos-samp-3-1-a.png" width="30%" />
+  <img src="images/samples-3/pos-samp-3-2-a.png" width="30%" />
+  <img src="images/samples-3/pos-samp-3-3-a.png" width="30%" />
+</p>
 
-    <br>
+<!-- Row 2 -->
+<p align="center">
+  <img src="images/samples-3/pos-samp-3-1-b.png" width="30%" />
+  <img src="images/samples-3/pos-samp-3-2-b.png" width="30%" />
+  <img src="images/samples-3/pos-samp-3-3-b.png" width="30%" />
+</p>
+
+<br>
 
 **Figure 4:** Illustration of Strategy 3 sampling. Multiple overlapping 5-second positive samples
 were generated from a single button press event by shifting the window slightly forward and
