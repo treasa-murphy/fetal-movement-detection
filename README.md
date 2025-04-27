@@ -133,7 +133,9 @@ Baseline fetal movement classification was shown to be achievable using a minima
 
 The best-performing pipeline combined QUANT feature extraction, scaling, and Linear Discriminant Analysis (LDA). Using p1 sensor data with balanced training and testing sets, this approach achieved an F1-score of 0.52 and an average accuracy of 0.65.
 
-![Fetal Movement Monitoring](images/strategy_1_b_t_t_cm.png)
+<div align="center">
+  <img src="images/strategy_1_b_t_t_cm.png" alt="Fetal Movement Monitoring" />
+</div>
 
 **Figure 4:** Confusion matrix illustrating the performance of the QUANT + Scaling + LDA pipeline on balanced p1 sensor data with a participant-independent train-test split.
 
