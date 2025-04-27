@@ -97,12 +97,15 @@ The dataset was collected by clinicians at a maternity hospital in Ireland and i
 
 ### **Project Structure**
 
-- `/data/` — Contains raw and preprocessed datasets (not included in public repository).
-- `/notebooks/` — Jupyter notebooks for exploratory analysis, sample generation, and model training.
-- `/models/` — Trained model files and evaluation results.
-- `/src/` — Source code including sample generation scripts, feature extraction, and classification pipelines.
-- `README.md` — Project overview and documentation.
-- `requirements.txt` — List of Python dependencies.
+The repository is organised as follows:
+
+- **README.md**: Project overview, setup instructions, and key information.
+- **requirements.txt**: Python package dependencies.
+- **data/**: Folder for input data (not included in the public repository).
+- **images/**: Images used for documentation and visualisations.
+- **models/**: Saved trained models (e.g., .pkl files).
+- **notebooks/**: Jupyter notebooks for data exploration, model training, and evaluation.
+- **src/**: Source code modules for data preprocessing, sample generation strategies, model building, and evaluation utilities.
 
 ---
 
@@ -118,7 +121,7 @@ The dataset was collected by clinicians at a maternity hospital in Ireland and i
 
 ### **Acknowledgements**
 
-I would like to thank Assoc. Prof. Georgiana Ifrim for her exceptional supervision and guidance throughut this project. I am also grateful to Dr. Colin Boyle and Prof. Niamh Nowlan from the FeMo team for their biomedical engineering insights. Special thanks to the mothers who participated in the FeMo study for making this research possible.
+I would like to thank Assoc. Prof. Georgiana Ifrim for her exceptional supervision and guidance througohut this project. I am also grateful to Dr. Colin Boyle and Prof. Niamh Nowlan from the FeMo team for their biomedical engineering expertise. Special thanks to the mothers who participated in the FeMo study for making this research possible.
 
 ---
 
