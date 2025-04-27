@@ -25,10 +25,15 @@ The dataset was collected by clinicians at a maternity hospital in Ireland and i
 ### **Project Objectives**
 
 - Explore the use of state-of-the-art time series classification techniques (Quant, Rocket, Hydra) for fetal movement detection.
+
 - Develop an efficient, lightweight pipeline optimised for minimalistic wearable sensor data.
+
 - Investigate the impact of different sample generation strategies and class balancing techniques on classification performance.
+
 - Evaluate model performance using participant-independent splits to ensure generalisability.
+
 - Assess whether accurate movement detection is achievable using piezoelectric sensor data (p1 and p4), without the need for complex sensor fusion.
+
 - Identify challenges and opportunities for future research towards scalable, non-invasive prenatal monitoring systems.
 
 ---
@@ -132,16 +137,19 @@ diversity while targeting the same fetal movement event.
 - **Sensor Findings:**  
 
   - Adding p4 alongside p1 did not significantly improve model generalisation.  
+
   - p1 alone provided more consistent and reliable performance.
 
 - **Sampling Strategy Insights:**  
 
   - Targeted sampling around maternal clicks (Strategy 1) was essential for capturing relevant movement events.  
+
   - Rigorous class balancing greatly improved F1-score and recall.
 
 - **Augmentation Trade-Offs:**  
 
   - Overlapping positive windows (Strategy 3) substantially boosted recall.  
+
   - However, it increased false positives, reflecting a classic sensitivity-specificity trade-off.
 
 
@@ -152,11 +160,17 @@ diversity while targeting the same fetal movement event.
 The repository is organised as follows:
 
 - **README.md**: Project overview, setup instructions, and key information.
+
 - **requirements.txt**: Python package dependencies.
+
 - **data/**: Folder for input data (not included in the public repository).
+
 - **images/**: Images used for documentation and visualisations.
+
 - **models/**: Saved trained models (e.g., .pkl files).
+
 - **notebooks/**: Jupyter notebooks for data exploration, model training, and evaluation.
+
 - **src/**: Source code modules for data preprocessing, sample generation strategies, model building, and evaluation utilities.
 
 ---
@@ -164,9 +178,13 @@ The repository is organised as follows:
 ### **Future Work**
 
 - Incorporate multimodal sensor fusion by combining piezoelectric and IMU sensor data.
+
 - Extend validation to include unsupervised home recording sessions.
+
 - Explore deep learning architectures such as CNNs and hybrid CNN-LSTM models.
+
 - Integrate real-time movement detection capabilities.
+
 - Validate findings using ultrasound-confirmed movement annotations.
 
 ---
@@ -179,8 +197,7 @@ I would like to thank Assoc. Prof. Georgiana Ifrim for her exceptional supervisi
 
 ### **Disclaimer**
 
-This project was conducted solely for academic research purposes.  
-The models and findings presented here are not intended for clinical use without further validation and regulatory approval.
+This project was conducted solely for academic research purposes.  The models and findings presented here are not intended for clinical use without further validation and regulatory approval.
 
 
 
