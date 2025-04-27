@@ -62,15 +62,30 @@ The dataset was collected by clinicians at a maternity hospital in Ireland and i
   - **Strategy 2:** Segmented entire sessions into non-overlapping 5-second windows, labelling windows based on the presence or absence of a button-click. 
 
     &nbsp;
-    
+
     ![Fetal Movement Monitoring](images/samples-2/neg-sample-2.png)
 
     **Fig. 4.**: Example of a Strategy 2 negative sample. The plot shows a 5-second window where no
     maternally-perceived fetal movements were reported, with signals from both p1 and p4 piezoelectric
-    sensors displayed. The absence of button clicks across the window led to the negative label. Both
-    sensor signals capture background activity without any distinct fetal movement patterns
+    sensors displayed. The absence of button clicks across the window led to the negative label.
 
   - **Strategy 3:** Introduced overlapping positive windows around click events to augment the number of movement samples and enhance recall.
+
+  <!-- Row 1 -->
+<p align="center">
+  <img src="images/samples-3/pos-sample-3-1-a.png" width="30%" />
+  <img src="images/samples-3/pos-sample-3-2-a.png" width="30%" />
+  <img src="images/samples-3/pos-sample-3-3-a.png" width="30%" />
+</p>
+
+<!-- Row 2 -->
+<p align="center">
+  <img src="images/samples-3/pos-sample-3-1-b.png" width="30%" />
+  <img src="images/samples-3/pos-sample-3-2-b.png" width="30%" />
+  <img src="images/samples-3/pos-sample-3-3-b.png" width="30%" />
+</p>
+
+<br>
 
 **3. Model Training:**  
 
@@ -81,8 +96,6 @@ The dataset was collected by clinicians at a maternity hospital in Ireland and i
   - Applied class balancing techniques, evaluating both 2:1 negative-to-positive and 2:1 positive-to-negative setups to address dataset imbalance.  
 
   - Focused subsequent experiments on refining and evaluating the QUANT + Scaling + LDA pipeline.
-
-**Pipeline Overview:**  
 
 ![Fetal Movement Detection Pipeline](images/fmm-pipeline.png)  
 
