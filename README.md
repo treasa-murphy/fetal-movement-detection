@@ -104,7 +104,7 @@ were generated from a single button press event by shifting the window slightly 
 backward. Signals from p1 and p4 are shown across different shifted windows, enhancing training
 diversity while targeting the same fetal movement event.
 
-&nbsp;
+
 **3. Model Training:**  
 
   - Initially compared state-of-the-art time series classifiers, including Quant, Rocket, and Hydra, alongside conventional machine learning models.
@@ -130,35 +130,15 @@ diversity while targeting the same fetal movement event.
 
 ### **Key Results**
 
-- **Feasibility:**  
+Baseline fetal movement classification was shown to be achievable using a minimalistic, non-invasive sensor configuration. Although not yet clinically deployable, the results provide a strong foundation for future research into scalable prenatal monitoring systems.
 
-  Baseline fetal movement classification is achievable using a minimalistic, non-invasive sensor configuration. The results provide a strong foundation for future research in scalable prenatal monitoring. 
+The best-performing pipeline combined QUANT feature extraction, scaling, and Linear Discriminant Analysis (LDA). Using p1 sensor data with balanced training and testing sets, this approach achieved an F1-score of 0.52 and an average accuracy of 0.65.
 
-- **Best Pipeline Performance:**  
+Experiments investigating the addition of p4 signals alongside p1 revealed that p1 alone provided more consistent and reliable performance, with no significant improvement observed from multi-sensor input.
 
-  - **Pipeline:** QUANT + Scaling + LDA  
-  - **Data:**: Achieved using p1 sensor data with balanced training and testing sets
-  - **F1-Score:** 0.52  
-  - **Average Accuracy:** 0.65  
+Sampling strategy was found to play a critical role. Temporal targeting around maternally annotated events (Strategy 1) led to superior detection performance compared to naive windowing approaches. Rigorous class balancing further contributed to improvements in F1-score and recall, highlighting the importance of addressing natural data imbalances.
 
-- **Sensor Findings:**  
-
-  - Adding p4 alongside p1 did not significantly improve model generalisation.  
-
-  - p1 alone provided more consistent and reliable performance.
-
-- **Sampling Strategy Insights:**  
-
-  - Targeted sampling around maternal clicks (Strategy 1) was essential for capturing relevant movement events.  
-
-  - Rigorous class balancing greatly improved F1-score and recall.
-
-- **Augmentation Trade-Offs:**  
-
-  - Overlapping positive windows (Strategy 3) substantially boosted recall.  
-
-  - However, it increased false positives, reflecting a classic sensitivity-specificity trade-off.
-
+Finally, augmentation techniques involving overlapping positive windows (Strategy 3) successfully boosted recall but introduced a higher rate of false positives. This finding underscores a classic trade-off between sensitivity and specificity, requiring careful consideration in future system designs.
 
 ---
 
