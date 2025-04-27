@@ -40,6 +40,12 @@ The dataset was collected by clinicians at a maternity hospital in Ireland and i
   - Focused analysis on signals from piezoelectric sensors p1 and p4, which consistently provided the highest signal quality.  
   - Removed noisy segments such as belt adjustment periods by trimming the first and last minutes of each hospital recording session.
 
+&nbsp;
+
+![Fetal Movement Monitoring](images/fmm-sensor-data.png)
+
+**Fig. 2.** Example of raw sensor data recorded during a 3-minute hospital session. Signals from piezoelectric sensors (p1 and p4), accelerometers, and maternal button-click annotations are shown, illustrating the complexity and variability of the recorded fetal movement data.
+
 - **Sample Generation Strategies:**  
   - **Strategy 1:** Generated non-overlapping 5-second windows centred around maternally annotated button-click events, targeting periods of fetal movement.  
   - **Strategy 2:** Segmented entire sessions into non-overlapping 5-second windows, labelling windows based on the presence or absence of a button-click.  
