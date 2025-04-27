@@ -96,12 +96,12 @@ The dataset was collected by clinicians at a maternity hospital in Ireland and i
 
 <br>
 
+</div>
+
 **Figure 4:** Illustration of Strategy 3 sampling. Multiple overlapping 5-second positive samples
 were generated from a single button press event by shifting the window slightly forward and
 backward. Signals from p1 and p4 are shown across different shifted windows, enhancing training
 diversity while targeting the same fetal movement event.
-
-</div>
 
 **3. Model Training:**  
 
