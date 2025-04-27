@@ -104,7 +104,7 @@ were generated from a single button press event by shifting the window slightly 
 backward. Signals from p1 and p4 are shown across different shifted windows, enhancing training
 diversity while targeting the same fetal movement event.
 
-
+&nbsp;
 **3. Model Training:**  
 
   - Initially compared state-of-the-art time series classifiers, including Quant, Rocket, and Hydra, alongside conventional machine learning models.
@@ -119,7 +119,7 @@ diversity while targeting the same fetal movement event.
 
 **Figure 2.**  Final classification pipeline used in this project. The pipeline consists of a QUANTTransformer for feature extraction, followed by StandardScaler for normalisation, and LinearDiscriminantAnalysis (LDA) for classification.
 
-
+&nbsp;
 **4. Evaluation** 
 
   - Models were evaluated using F1-Score, average accuracy, precision, and recall to account for class imbalance and clinical relevance.  
