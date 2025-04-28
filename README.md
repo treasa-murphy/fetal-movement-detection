@@ -52,7 +52,7 @@ The dataset was collected by clinicians at a maternity hospital in Ireland and i
 
 ![Fetal Movement Monitoring](images/fmm-sensor-data.png)
 
-**Fig. 2.** Example of raw sensor data recorded during a 3-minute hospital session. Signals from piezoelectric sensors (p1 and p4), accelerometers, and maternal button-click annotations are shown, illustrating the complexity and variability of the recorded fetal movement data.
+**Fig. 2.** Example of 3 minutes of raw sensor data extracted from a 30-minute hospital session. Signals from piezoelectric sensors (p1 and p4), accelerometers, and maternal button-click annotations are shown, illustrating the complexity and variability of the recorded fetal movement data.
 
 
 **2. Sample Generation:**  
@@ -99,7 +99,7 @@ The dataset was collected by clinicians at a maternity hospital in Ireland and i
 
 </div>
 
-**Figure 4:** Illustration of Strategy 3 sampling. Multiple overlapping 5-second positive samples
+**Figure 5:** Illustration of Strategy 3 sampling. Multiple overlapping 5-second positive samples
 were generated from a single button press event by shifting the window slightly forward and
 backward. Signals from p1 and p4 are shown across different shifted windows, enhancing training
 diversity while targeting the same fetal movement event.
@@ -117,7 +117,7 @@ diversity while targeting the same fetal movement event.
 
 ![Fetal Movement Detection Pipeline](images/fmm-pipeline.png)  
 
-**Figure 2.**  Final classification pipeline used in this project. The pipeline consists of a QUANTTransformer for feature extraction, followed by StandardScaler for normalisation, and LinearDiscriminantAnalysis (LDA) for classification.
+**Figure 6.**  Final classification pipeline used in this project. The pipeline consists of a QUANTTransformer for feature extraction, followed by StandardScaler for normalisation, and LinearDiscriminantAnalysis (LDA) for classification.
 
 **4. Evaluation** 
 
@@ -137,7 +137,7 @@ The best-performing pipeline combined QUANT feature extraction, scaling, and Lin
   <img src="images/strategy_1_b_t_t_cm.png" alt="Fetal Movement Monitoring" />
 </div>
 
-**Figure 4:** Confusion matrix illustrating the performance of the QUANT + Scaling + LDA pipeline on balanced p1 sensor data with a participant-independent train-test split.
+**Figure 7:** Confusion matrix illustrating the performance of the QUANT + Scaling + LDA pipeline on balanced p1 sensor data with a participant-independent train-test split.
 
 Experiments investigating the addition of p4 signals alongside p1 revealed that p1 alone provided more consistent and reliable performance, with no significant improvement observed from multi-sensor input.
 
