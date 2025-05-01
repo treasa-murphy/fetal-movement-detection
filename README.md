@@ -183,7 +183,7 @@ The repository is organised as follows:
 
 ### **Acknowledgements**
 
-I would like to thank Assoc. Prof. Georgiana Ifrim for her exceptional supervision and guidance througohut this project. I am also grateful to Dr. Colin Boyle and Prof. Niamh Nowlan from the FeMo team for their biomedical engineering expertise. Special thanks to the mothers who participated in the FeMo study for making this research possible.
+I would like to thank Assoc. Prof. Georgiana Ifrim for her exceptional supervision and guidance throughout this project. I am also grateful to Dr. Colin Boyle and Prof. Niamh Nowlan from the FeMo team for their biomedical engineering expertise. A special thanks to the mothers who participated in the FeMo study for making this research possible.
 
 ---
 
